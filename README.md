@@ -46,7 +46,7 @@ npm run dev
 
 创建 `.env.local` 文件并配置刷新频率：
 
-\`\`\`bash
+
 # 快速刷新 (开发/调试用) - 高CPU使用
 NEXT_PUBLIC_SYSTEM_PERFORMANCE_REFRESH=1000
 NEXT_PUBLIC_NETWORK_INTERFACES_REFRESH=500
@@ -64,7 +64,6 @@ NEXT_PUBLIC_SYSTEM_PERFORMANCE_REFRESH=5000
 NEXT_PUBLIC_NETWORK_INTERFACES_REFRESH=3000
 NEXT_PUBLIC_SECURITY_MATRIX_REFRESH=10000
 NEXT_PUBLIC_ROUTE_DIAGNOSTICS_REFRESH=30000
-\`\`\`
 
 ### Docker部署 (监控宿主机)
 不建议
@@ -74,28 +73,28 @@ NEXT_PUBLIC_ROUTE_DIAGNOSTICS_REFRESH=30000
 ### 1. 根据使用场景调整刷新频率
 
 **实时监控场景** (高精度，高CPU使用):
-\`\`\`bash
+```
 NEXT_PUBLIC_SYSTEM_PERFORMANCE_REFRESH=1000
 NEXT_PUBLIC_NETWORK_INTERFACES_REFRESH=500
 NEXT_PUBLIC_SECURITY_MATRIX_REFRESH=2000
 NEXT_PUBLIC_ROUTE_DIAGNOSTICS_REFRESH=5000
-\`\`\`
+```
 
 **日常监控场景** (平衡性能):
-\`\`\`bash
+```
 NEXT_PUBLIC_SYSTEM_PERFORMANCE_REFRESH=2000
 NEXT_PUBLIC_NETWORK_INTERFACES_REFRESH=1000
 NEXT_PUBLIC_SECURITY_MATRIX_REFRESH=5000
 NEXT_PUBLIC_ROUTE_DIAGNOSTICS_REFRESH=10000
-\`\`\`
+```
 
 **后台监控场景** (低CPU使用):
-\`\`\`bash
+```
 NEXT_PUBLIC_SYSTEM_PERFORMANCE_REFRESH=10000
 NEXT_PUBLIC_NETWORK_INTERFACES_REFRESH=5000
 NEXT_PUBLIC_SECURITY_MATRIX_REFRESH=15000
 NEXT_PUBLIC_ROUTE_DIAGNOSTICS_REFRESH=60000
-\`\`\`
+```
 
 ### 2. 模块化数据获取
 
@@ -111,43 +110,27 @@ NEXT_PUBLIC_ROUTE_DIAGNOSTICS_REFRESH=60000
 ### 常见问题
 
 1. **API无响应**
-   \`\`\`bash
+
    # 检查服务状态
    curl http://localhost:3000/api/network-status
-   \`\`\`
 
 2. **CPU使用率过高**
-   \`\`\`bash
+
    # 降低刷新频率
    NEXT_PUBLIC_SYSTEM_PERFORMANCE_REFRESH=5000
    NEXT_PUBLIC_NETWORK_INTERFACES_REFRESH=3000
-   \`\`\`
 
 3. **数据更新不及时**
-   \`\`\`bash
    # 提高刷新频率
    NEXT_PUBLIC_NETWORK_INTERFACES_REFRESH=500
-   \`\`\`
-
-4. **权限不足**
-   \`\`\`bash
-   # 检查网络命令权限
-   ./scripts/test-network.sh
-   \`\`\`
-
-5. **Docker网络问题**
-   \`\`\`bash
-   # 重启Docker服务
-   docker-compose down && docker-compose up -d
-   \`\`\`
 
 ## 🎨 自定义配置
 
 ### 修改刷新频率
 在 `app/page.tsx` 中修改：
-\`\`\`typescript
+```typescript
 const interval = setInterval(fetchData, 1000) // 1秒刷新
-\`\`\`
+```
 
 ### 添加新的监控指标
 1. 在 `app/api/network-status/route.ts` 中添加数据获取函数
