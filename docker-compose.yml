@@ -1,0 +1,28 @@
+services:
+  mac-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mac-network-dashboard
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      # Mount host system info directories
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc:/host/etc:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # For network interfaces
+      - /sys/class/net:/host/sys/class/net:ro
+    environment:
+      - NODE_ENV=production
+      - HOST_PROC=/host/proc
+      - HOST_SYS=/host/sys
+      - HOST_ETC=/host/etc
+    command: sh -c "npm run build && npm start"
+    privileged: false
+    # Alternative to privileged - more secure
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
