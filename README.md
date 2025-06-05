@@ -1,6 +1,7 @@
 # 🚀 NetPlus - macOS Network Monitoring Center
 
 实时网络监控Web应用，专为macOS设计，支持独立配置各监控模块的刷新频率。
+![Screenshot 2025-06-04 at 22 40 38](https://github.com/user-attachments/assets/91fce3c1-b0a2-4c64-a9cd-79aaef60431f)
 
 ## ✨ 特色功能
 
